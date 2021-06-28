@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public static class PlayerConfig
 {
     public static readonly int MOVEMENT_OFFSET = 2;
+
+    public static readonly ArrayList ValidMoves = new ArrayList
+    {
+        Directions.Right,
+        Directions.Left
+    };
 
     public static bool GetRightKeyPressed()
     {

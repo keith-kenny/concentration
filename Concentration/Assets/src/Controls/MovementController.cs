@@ -16,13 +16,7 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         //Done before any processing
-        _moveQueue.Enqueue(GetNextMove());
-
-        //Next Move
-        var currentMove = _moveQueue.Dequeue();
-        ApplyMove(currentMove);
-
-
+        EnqueueAndApplyMove();
     }
 
     private Directions GetNextMove()
@@ -48,4 +42,14 @@ public class MovementController : MonoBehaviour
         Debug.Log($"Applied move: {move}");
     }
 
+    private void EnqueueAndApplyMove()
+    {
+        var nextMove = GetNextMove();
+        // If the move above is valid, then pop the move
+        if(PlayerConfig.ValidMoves.Contains(nextMove))
+        {
+            ApplyMove(_moveQueue.Dequeue());
+        }
+        _moveQueue.Enqueue(nextMove);
+    }
 }

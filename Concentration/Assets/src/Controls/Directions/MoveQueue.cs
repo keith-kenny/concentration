@@ -22,16 +22,12 @@ public class MoveQueue
 
     public Directions Dequeue()
     {
-        try
+        var direction = Directions.NonePressed;
+        if(_moveQueue.Count != 0)
         {
-            var direction = (Directions)_moveQueue.Dequeue();
-            return direction;
-        } catch(Exception e)
-        {
-            //TODO: Add logger
-
-            //TODO: Sort this
-            return Directions.NonePressed;
+            direction = (Directions)_moveQueue.Dequeue();
         }
+
+        return direction;
     }
 }
